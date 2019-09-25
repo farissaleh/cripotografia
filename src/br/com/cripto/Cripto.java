@@ -7,6 +7,14 @@ import java.util.List;
 import javax.xml.bind.ValidationException;
 
 public class Cripto {
+	
+	/**
+	 * @local Faculdade UPIS
+	 * @materia Segurança da Informação
+	 * @professor Olivier
+	 * @author Faris Saleh Ahmad
+	 * @data 25 de setembro de 2019
+	 */
 
 	public static void main(String[] args) throws Exception {
 		String in = "FPOCLAPPAPFLMCZAUNPNPVPNTONQYVMNJVULYVLNFVAOGHATP";
@@ -47,6 +55,7 @@ public class Cripto {
 //		System.out.println(f);
 	}
 
+	//Baseado no método de congruência com a função f(x) 
 	private String funcaoFixa(String texto) {
 		int L;
 		StringBuilder b = new StringBuilder();
@@ -79,6 +88,7 @@ public class Cripto {
 		return b.toString();
 	}
 
+	//Métdo para encontrar P-1 da chave de permutação
 	private String findInversa(String key) {
 		StringBuilder n = new StringBuilder();
 		for (int i = 0; i < key.length(); i++) {
@@ -88,6 +98,7 @@ public class Cripto {
 		return n.toString();
 	}
 
+	//Método de permutação
 	private String permutacao(String key, String txt) {
 		StringBuilder n = new StringBuilder();
 		List<String> lista = new ArrayList<String>();
@@ -108,10 +119,12 @@ public class Cripto {
 		return n.toString();
 	}
 
+	//Método que 'codifca' texto usando método de transaposição
 	private String encodeTP(String txt, int key) {
 		return transposicao(txt, key);
 	}
 
+	//Método que 'decodifca' texto usando método de transaposição
 	private String decodeTP(String txt, int key) {
 		return transposicao(txt, txt.length()/ key);
 	}
@@ -131,6 +144,7 @@ public class Cripto {
 		return tp.toString();
 	}
 
+	//Método que gera o HASH de um texto baseado nas lógica vista em sala
 	private String hash(String texto) throws Exception {
 		int tamCasasBin = 8;
 		char[] a = texto.toUpperCase().toCharArray();
@@ -153,12 +167,12 @@ public class Cripto {
 		return hash.toString();
 	}
 
-
-	//PADRÃO DE CEASAR
+	//Método que 'codifica' texto baseado no PADRÃO DE CEASAR
 	private String encodeDPC(String frase) {
 		return dpc(frase.toUpperCase(), true);
 	}
 
+	//Método que 'decodifica' texto baseado no PADRÃO DE CEASAR
 	private String decodeDPC(String frase) {
 		return dpc(frase.toUpperCase(), false);
 	}
