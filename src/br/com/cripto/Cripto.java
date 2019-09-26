@@ -11,7 +11,7 @@ public class Cripto {
 	/**
 	 * @local Faculdade UPIS
 	 * @materia Segurança da Informação
-	 * @professor Olivier
+	 * @professor Olivier Gbegan
 	 * @author Faris Saleh Ahmad
 	 * @data 25 de setembro de 2019
 	 */
@@ -23,16 +23,16 @@ public class Cripto {
 		System.out.println("Texto Cripotgrafado :");
 		System.out.println(in);
 		
-		System.out.println("\nTexto antes da função :");
-		String texto = cripto.funcaoFixa(in);
+		System.out.println("\nTexto antes da congruência f(x)= -7x-8 :");
+		String texto = cripto.congruencia(in);
 		System.out.println(texto);
 		
-		System.out.println("\nTexto antes da permutação(7412356):");
+		System.out.println("\nTexto antes da permutação P =(7412356):");
 		String key = cripto.findInversa("7412356");
 		texto = cripto.permutacao(key, texto);
 		System.out.println(texto);
 		
-		System.out.println("\nTexto antes da transposição :");
+		System.out.println("\nTexto antes da transposição Ch=7:");
 		texto = cripto.decodeTP(texto, 7);
 		System.out.println(texto);
 		
@@ -40,38 +40,44 @@ public class Cripto {
 		texto = cripto.decodeDPC(texto);
 		System.out.println(texto);
 		
-		System.out.println("\nTexto antes da permutação(7412563):");
+		System.out.println("\nTexto Claro antes da permutação P =(7412563):");
 		String key2 = cripto.findInversa("7412563");
-		texto = cripto.permutacao(key2, texto);
-		System.out.println(texto);
+		String textoClaro = cripto.permutacao(key2, texto);
+		System.out.println(textoClaro);
 		
-//		System.out.println("Texte"+cripto.funcaoFixa(in));
-		//Trasnposição 
-		//Crifração
+		//RESPOSTAS
 		
-//		String tx = cripto.permutacao("7412356", "ABCDEFGHIJKLMN");
-//		String k = cripto.findInversa("7412356");
-//		String f = cripto.permutacao(k, tx);
-//		System.out.println(f);
+		System.out.println("\nResposta a) HASH:");
+		
+		System.out.println(cripto.hash(textoClaro));		
+		
+		System.out.println("\nResposta b) TP ch 7:");
+		
+		System.out.println(cripto.encodeTP(textoClaro, 7));
+		
+		System.out.println("\nResposta c) P=(1734562):");
+		
+		System.out.println(cripto.permutacao("1734562", textoClaro));
 	}
 
-	//Baseado no método de congruência com a função f(x) 
-	private String funcaoFixa(String texto) {
+	//Baseado no método de congruência com a função f(x)= -7x-8 
+	private String congruencia(String texto) {
 		int L;
 		StringBuilder b = new StringBuilder();
 		
 		
 		for (char s : texto.toCharArray()) {
 			int n = 1 ;	
-			L =((int) s -64);
-			int mod = 1;
-			int div = 0;
+			L =((int) s -64);//Valor da letra
+			int mod = 1;//inicialização de variável
+			int div = 0;//inicialização de variável
 			while (mod != 0) {
-				int fxUp = L + 8 + (26*n) ;
-				int fxDown = -7;
-				mod = fxUp % fxDown;
+				//L + 26n = -7x -8
+				int funcSup = L + 8 + (26*n) ;//Parte superior da função fixa
+				int funcInf = -7;//Parte inferior da função fixa
+				mod = funcSup % funcInf; //mod
 				if (mod ==0) {
-					div = fxUp / fxDown;
+					div = funcSup / funcInf;// divissão
 					
 					while(div < 1) {
 						div= div + 26;
