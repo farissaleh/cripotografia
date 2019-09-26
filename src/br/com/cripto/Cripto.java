@@ -24,7 +24,7 @@ public class Cripto {
 		System.out.println(in);
 		
 		System.out.println("\nTexto antes da congruência f(x)= -7x-8 :");
-		String texto = cripto.congruencia(in);
+		String texto = cripto.congruenciaReversa(in);
 		System.out.println(texto);
 		
 		System.out.println("\nTexto antes da permutação P =(7412356):");
@@ -47,9 +47,12 @@ public class Cripto {
 		
 		//RESPOSTAS
 		
-		System.out.println("\nResposta a) HASH:");
-		
+		System.out.println("\nResposta a) :");
+		System.out.println("\nTexto Claro:");
+		System.out.println(textoClaro);
+		System.out.println("\nHASH:");
 		System.out.println(cripto.hash(textoClaro));		
+		
 		
 		System.out.println("\nResposta b) TP ch 7:");
 		
@@ -60,8 +63,8 @@ public class Cripto {
 		System.out.println(cripto.permutacao("1734562", textoClaro));
 	}
 
-	//Baseado no método de congruência com a função f(x)= -7x-8 
-	private String congruencia(String texto) {
+	//Baseado no método de congruência reversa com a função f(x)= -7x-8 
+	private String congruenciaReversa(String texto) {
 		int L;
 		StringBuilder b = new StringBuilder();
 		
