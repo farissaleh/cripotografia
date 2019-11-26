@@ -154,7 +154,7 @@ public class Cripto {
 	}
 
 	//Método que gera o HASH de um texto baseado nas lógica vista em sala
-	private String hash(String texto) throws Exception {
+	public String hash(String texto) throws Exception {
 		int tamCasasBin = 8;
 		char[] a = texto.toUpperCase().toCharArray();
 		List<String> listaBin = new ArrayList<String>();
